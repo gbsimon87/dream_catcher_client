@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { navigate, Router } from "@reach/router";
+import { navigate, Router, Redirect } from "@reach/router";
+import { Container } from "semantic-ui-react";
+
 import CreateDream from "./pages/CreateDreamPage";
 import DreamsPage from "./pages/DreamsPage";
 import SingleDreamPage from "./pages/SingleDreamPage";
 import MenuBar from "./components/MenuBar";
-import { Container } from "semantic-ui-react";
-
-import Home from "./pages/HomePage";
 import { fetchData, deleteDream, postDream } from "./services";
 
 const App = () => {
@@ -81,7 +80,7 @@ const App = () => {
       <MenuBar activeItem={activeMenuItem} setActiveItem={setActiveMenuItem} />
       <Container>
         <Router>
-          <Home path="/" />
+          <Redirect noThrow from="/" to="dreams" />
           <CreateDream
             path="dreams/create"
             handlePostDream={handlePostDream}
