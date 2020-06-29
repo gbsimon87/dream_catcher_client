@@ -12,9 +12,11 @@ const App = () => {
   const [data, setData] = useState([]);
   const [activeMenuItem, setActiveMenuItem] = useState("");
   const path = window.location.pathname;
+  const baseURL = "http://localhost:4000/api/dreams";
 
   useEffect(() => {
-    handleFetchData("http://localhost:4000/dreams");
+    // handleFetchData("https://dreams-server.netlify.app/dreams");
+    handleFetchData(baseURL);
   }, []);
 
   useEffect(() => {
@@ -33,7 +35,8 @@ const App = () => {
 
   const handleDeleteDream = async (dreamId) => {
     try {
-      await deleteDream(`http://localhost:4000/dreams/${dreamId}`);
+      // await deleteDream(`https://dreams-server.netlify.app/dreams/${dreamId}`);
+      await deleteDream(`${baseURL}/${dreamId}`);
       const newDreams = data.filter((dream) => dream._id !== dreamId);
       setData(newDreams);
     } catch (error) {
@@ -43,7 +46,11 @@ const App = () => {
 
   const handlePostDream = async (data) => {
     try {
-      const postedDream = await postDream("http://localhost:4000/dreams", data);
+      // const postedDream = await postDream(
+      //   "https://dreams-server.netlify.app/dreams",
+      //   data
+      // );
+      const postedDream = await postDream(baseURL, data);
       handleUpdateData(postedDream);
       navigate("/dreams");
     } catch (error) {

@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "add": "^2.0.6",
+    "compression": "^1.7.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -39,5 +40,9 @@
   "devDependencies": {
     "prettier": "^2.0.5"
   },
-  "proxy": "http://localhost:4000"
+  "proxy": {
+    "/*": {
+      "target": "http://localhost:4000"
+    }
+  }
 }
